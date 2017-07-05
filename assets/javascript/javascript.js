@@ -1,56 +1,56 @@
-$(document).ready(function() {
+ // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBtiD9HpF_0RFQ0URjiOzAzCGnqLiD1FHU",
+    authDomain: "scheduler-33fd9.firebaseapp.com",
+    databaseURL: "https://scheduler-33fd9.firebaseio.com",
+    projectId: "scheduler-33fd9",
+    storageBucket: "scheduler-33fd9.appspot.com",
+    messagingSenderId: "20870811331"
+  };
+  firebase.initializeApp(config);
 
- $(".button").on("click", function() {
-    var id = this.id
+  var database = firebase.database()
 
-    var queryURL = "http://api.giphy.com/v1/gifs/search?q=" +
-        id + "&api_key=dc6zaTOxFJmzC&limit=10"
-
-    $.ajax({
-      url: queryURL,
-      method: "GET"
-    })
-
-      //this function saves the image URL to a variable then uploads the images to the screen. 
-
-    .done(function(response) {
-
-      console.log(response);
-
-      for(i=0; i<10; i++) {
-
-        var imageUrl = response.data[i].images.fixed_height.url;
-        var imageUrlStill = response.data[i].images.original_still.url;
-        var image = $("<img>");
+  var trainName, destination, frequency, firstTrainTime, nextArrival, minutesAway;
 
 
-        image.attr("src", imageUrl);
-        image.attr("id", "newImage");
-        image.attr("data-still", imageUrlStill)
-        image.attr("data-animate", imageUrl)
-        image.attr("alt", id +" image");
-        image.attr("data-state", "animate" )
+  $("#submit").on("click", function(event) {
 
-        $("#images").prepend(image);
+    event.preventDefault();
 
-      }
+      trainName = $("#trainName").val();
+      destination = $("#destination").val();
+      firstTrainTime = $("#firstTrainTime").val();
+      frequency = $("#frequency").val();
 
-      //this allows us to start and stop the gif images.  
-
-      $("#images").on("click", "#newImage", function() {
-      
-        var state = $(this).attr("data-state");
-
-        if (state === "still") {
-          $(this).attr("src", $(this).attr("data-animate"));
-          $(this).attr("data-state", "animate");
-        } else {
-          $(this).attr("src", $(this).attr("data-still"));
-          $(this).attr("data-state", "still");
-        }
+      database.ref("newTrain").push({
+        name: trainName,
+        destination: destination,
+        time: firstTrainTime,
+        frequency: frequency
       });
 
 
-    });
+    database.ref("users").on("child_added", function(childSnapshot) {
+  
+    console.log(childSnapshot.val().name);
+    console.log(childSnapshot.val().role);
+    console.log(childSnapshot.val().startDate);
+    console.log(childSnapshot.val().monthlyRate);
+
+    var $row = $("<tr>")
+    var $nameAdd = $("<td>").text(childSnapshot.val().name)
+    var $roleAdd = $("<td>").text(childSnapshot.val().role)
+    var $startDateAdd = $("<td>").text(childSnapshot.val().startDate)
+    var $monthlyRateAdd = $("<td>").text(childSnapshot.val().monthlyRate)
+
+    var $totalUpdate = $row.append($nameAdd, $roleAdd, $startDateAdd, $monthlyRateAdd);
+
+    console.log($totalUpdate);
+    console.log($("#table"))
+    $("#table").append($totalUpdate)
+
+
   });
-});
+
+

@@ -4,12 +4,23 @@
 
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-  <title>Giphy Generator</title>
+  <title>Scheduler</title>
+
+  <!-- jQuery -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="assets/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="assets/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+  <!-- Link to Moment.js should go here -->
+  <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+
+  <!-- firebase -->
+  <script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
+
+
 
 
 </head>
@@ -17,7 +28,7 @@
 
 
   <nav class="light-blue lighten-1" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Animal Giphs!</a>
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo"> Train Scheduler</a>
 
       <ul id="nav-mobile" class="side-nav">
       </ul>
@@ -27,23 +38,83 @@
   <div class="section no-pad-bot" id="index-banner">
     <div class="container">
       <br><br>
-      <h1 class="header center orange-text">Giphy!</h1>
+      <h1 class="header center orange-text"> Train Scheduler </h1>
       <div class="row center">
       </div>
       <div class="row center">
 
-        <button id="cat" class="button btn-large waves-effect waves-light orange"> Kitten </button>
-        <button id="puppy" class="button btn-large waves-effect waves-light orange"> Puppy </button>
-        <button id="horse" class="button btn-large waves-effect waves-light orange"> Horse </button>
-        <button id="parrot" class="button btn-large waves-effect waves-light orange"> Parrot </button>
-        <button id="chicken" class="button btn-large waves-effect waves-light orange"> Chicken </button>
-        <button id="fish" class="button btn-large waves-effect waves-light orange"> Fish </button>
-        <button id="koala" class="button btn-large waves-effect waves-light orange"> Koala </button>
-
       </div>
 
-        <div id="images">
+        <div id="Scheduler Information">
+          <table>
+            <thead>
+              <tr>
+                  <th>Train Name</th>
+                  <th>Destiantion</th>
+                  <th>Frequency</th>
+                  <th>Next Arrival</th>
+                  <th>Minutes Away</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
+
+        <div class="row">
+          <form class="col s12">
+            <div class="row">
+              <div class="input-field col s12">
+                  <input id="trainName" type="text" class="validate">
+                  <label for="trainName">Train Name</label>
+              </div>
+            </div>
+            <div class="row">
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="destination" type="text" class="validate">
+                <label for="destination">Destination </label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="firstTrainTime" type="text" class="validate">
+                <label for="time">First Train Time</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="frequency" type="text" class="validate">
+                <label for="frequency">Frequency</label>
+              </div>
+            </div>
+            <a class="waves-effect waves-light btn" id="submit">Submit</a>
+          </form>
+        </div>
+        
 
       <br><br>
 
