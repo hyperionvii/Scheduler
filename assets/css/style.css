@@ -1,0 +1,12 @@
+#newImage {
+	height: 200px;
+	width: 200px;
+}
+
+.icon-block {
+  padding: 0 15px;
+}
+.icon-block .material-icons {
+	font-size: inherit;
+}
+
