@@ -30,25 +30,29 @@
         frequency: frequency
       });
 
+  });
 
-    database.ref("users").on("child_added", function(childSnapshot) {
+
+    database.ref("newTrain").on("child_added", function(childSnapshot) {
   
-    console.log(childSnapshot.val().name);
-    console.log(childSnapshot.val().role);
-    console.log(childSnapshot.val().startDate);
-    console.log(childSnapshot.val().monthlyRate);
 
     var $row = $("<tr>")
-    var $nameAdd = $("<td>").text(childSnapshot.val().name)
-    var $roleAdd = $("<td>").text(childSnapshot.val().role)
-    var $startDateAdd = $("<td>").text(childSnapshot.val().startDate)
-    var $monthlyRateAdd = $("<td>").text(childSnapshot.val().monthlyRate)
+    var $trainName = $("<td>").text(childSnapshot.val().name)
+    var $destination = $("<td>").text(childSnapshot.val().destination)
+    var $firstTrainTime = $("<td>").text(childSnapshot.val().time)
+    var $frequency = $("<td>").text(childSnapshot.val().frequency)
 
-    var $totalUpdate = $row.append($nameAdd, $roleAdd, $startDateAdd, $monthlyRateAdd);
+    var $totalUpdate = $row.append($trainName, $destination, $firstTrainTime, $frequency);
 
-    console.log($totalUpdate);
-    console.log($("#table"))
+
     $("#table").append($totalUpdate)
+
+
+    function nextTrainTime() {
+       // Time apart (remainder)
+    var tRemainder = diffTime % tFrequency;
+    console.log(tRemainder);
+    }
 
 
   });
