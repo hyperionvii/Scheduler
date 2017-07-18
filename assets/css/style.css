@@ -1,1 +1,7 @@
+  html {
+    font-family: GillSans, Calibri, Trebuchet, sans-serif;
+  }
 
+  .header, .brand-logo {
+  	font-family: 'UnifrakturMaguntia', cursive;
+  }
